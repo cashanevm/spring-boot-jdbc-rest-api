@@ -1,7 +1,7 @@
 package com.jdbc.rest.web.controller;
 
-import com.jdbc.rest.persistence.entity.Cloth;
-import com.jdbc.rest.service.api.ClothService;
+import com.jdbc.rest.persistence.entity.Brand;
+import com.jdbc.rest.service.api.BrandService;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,34 +21,34 @@ import lombok.RequiredArgsConstructor;
 import static com.jdbc.rest.constants.ApplicationConstants.APPLICATION_PREFIX;
 
 @RestController
-@RequestMapping(APPLICATION_PREFIX + "/cloth")
+@RequestMapping(APPLICATION_PREFIX + "/brand")
 @RequiredArgsConstructor
-public class ClothController {
-    private final ClothService clothService;
+public class BrandController {
+    private final BrandService brandService;
 
     @PostMapping()
-    public ResponseEntity<Cloth> createCloth(@RequestBody Cloth cloth) {
-        clothService.create(cloth);
-        return ResponseEntity.of(Optional.of(cloth));
+    public ResponseEntity<Brand> createBrand(@RequestBody Brand brand) {
+        brandService.create(brand);
+        return ResponseEntity.of(Optional.of(brand));
     }
 
     @PutMapping
-    public ResponseEntity<Cloth> saveCloth(@RequestBody Cloth cloth) {
-        return ResponseEntity.ok(clothService.save(cloth));
+    public ResponseEntity<Brand> saveBrand(@RequestBody Brand brand) {
+        return ResponseEntity.ok(brandService.save(brand));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getClothById(@PathVariable(name = "id") String id) {
-        return ResponseEntity.of(clothService.getById(id));
+    public ResponseEntity<Object> getBrandById(@PathVariable(name = "id") String id) {
+        return ResponseEntity.of(brandService.getById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<Object>> getAllCloth() {
-        return ResponseEntity.ok(clothService.getAll());
+    public ResponseEntity<List<Object>> getAllBrand() {
+        return ResponseEntity.ok(brandService.getAll());
     }
 
     @DeleteMapping("/{id}")
-    public void deleteColorById(@PathVariable(name = "id") String id) {
-        clothService.deleteById(id);
+    public void deleteBrandById(@PathVariable(name = "id") String id) {
+        brandService.deleteById(id);
     }
 }

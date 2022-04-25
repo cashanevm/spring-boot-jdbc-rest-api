@@ -1,10 +1,9 @@
 package com.jdbc.rest.web.controller;
 
-import com.jdbc.rest.persistence.entity.Cloth;
-import com.jdbc.rest.service.api.ClothService;
+import com.jdbc.rest.persistence.entity.Color;
+import com.jdbc.rest.service.api.ColorService;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -21,34 +20,33 @@ import lombok.RequiredArgsConstructor;
 import static com.jdbc.rest.constants.ApplicationConstants.APPLICATION_PREFIX;
 
 @RestController
-@RequestMapping(APPLICATION_PREFIX + "/cloth")
+@RequestMapping(APPLICATION_PREFIX + "/color")
 @RequiredArgsConstructor
-public class ClothController {
-    private final ClothService clothService;
+public class ColorController {
+    private final ColorService colorService;
 
-    @PostMapping()
-    public ResponseEntity<Cloth> createCloth(@RequestBody Cloth cloth) {
-        clothService.create(cloth);
-        return ResponseEntity.of(Optional.of(cloth));
+    @PostMapping
+    public ResponseEntity<Color> createColor(@RequestBody Color color) {
+        return ResponseEntity.ok(colorService.create(color));
     }
 
     @PutMapping
-    public ResponseEntity<Cloth> saveCloth(@RequestBody Cloth cloth) {
-        return ResponseEntity.ok(clothService.save(cloth));
+    public ResponseEntity<Color> saveColor(@RequestBody Color color) {
+        return ResponseEntity.ok(colorService.save(color));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getClothById(@PathVariable(name = "id") String id) {
-        return ResponseEntity.of(clothService.getById(id));
+    public ResponseEntity<Object> getColorById(@PathVariable(name = "id") String id) {
+        return ResponseEntity.of(colorService.getById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<Object>> getAllCloth() {
-        return ResponseEntity.ok(clothService.getAll());
+    public ResponseEntity<List<Object>> getAllColor() {
+        return ResponseEntity.ok(colorService.getAll());
     }
 
     @DeleteMapping("/{id}")
     public void deleteColorById(@PathVariable(name = "id") String id) {
-        clothService.deleteById(id);
+        colorService.deleteById(id);
     }
 }

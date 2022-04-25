@@ -9,4 +9,5 @@ public final class ApplicationConstants {
     }
 
     public static final String APPLICATION_PREFIX = "/a/j/rest";
+    public static final String SQL_FILE_PATH = "src/main/resources/sql";
 }
